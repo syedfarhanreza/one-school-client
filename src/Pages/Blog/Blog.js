@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Header = () => {
+const Blog = () => {
     return (
         <div>
-            <h2>This is header</h2>
+           <p>Blogs</p>
         </div>
     );
 };
 
-export default Header;
+export default Blog;
