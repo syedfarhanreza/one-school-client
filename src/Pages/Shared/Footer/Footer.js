@@ -1,10 +1,15 @@
 import React from 'react';
+import {Col, Container, Row } from 'react-bootstrap';
 
 const Footer = () => {
     return (
-        <div>
-            <small>this is footer</small>
-        </div>
+        <Container className='bg-dark' fluid>
+            <Row>
+                <Col>
+                   
+                </Col>
+            </Row>
+        </Container>
     );
 };
 
