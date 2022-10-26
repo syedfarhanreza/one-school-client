@@ -1,13 +1,17 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { BsPeople } from 'react-icons/bs';
 import { FaMoneyCheckAlt } from 'react-icons/fa';
 import Image from 'react-bootstrap/Image';
 
-const CourseSummary = ({ course }) => {
-    const { id, name, about, cost, courseBanner, enrolled, instructor } = course;
+const CourseDetails = () => {
+    const courseInfo = useLoaderData();
+    const { id, name,courseDetails, about, cost, courseBanner, enrolled, instructor } = courseInfo;
+    console.log(courseInfo.name);
     return (
+        <>
+        <button>PDF</button>
         <Card className='mb-5'>
             <Card.Header>
                 <div className='d-flex align-items-center'>
@@ -24,13 +28,12 @@ const CourseSummary = ({ course }) => {
             </Card.Header>
             <Card.Body>
                 <Card.Title>{name}</Card.Title>
-                <Card.Img variant="top" src={courseBanner} />
+                <Card.Img variant="top" style={{height:'400px'}} src={courseBanner} />
                 <Card.Text>
-                    {about?.length > 200 ?
-                        <p>{about.slice(0, 250) + '....'} <Link to={`/courses/${id}`}>Show Details</Link></p>
-                        :
-                        <p>{about}</p>
-                    }
+                <h6>Course Details:</h6>{courseDetails}
+                </Card.Text>
+                <Card.Text>
+                    <h6>About this course:</h6>{about}
                 </Card.Text>
             </Card.Body>
             <Card.Footer className="text-muted d-flex justify-content-between align-items-center">
@@ -44,7 +47,8 @@ const CourseSummary = ({ course }) => {
                 </div>
             </Card.Footer>
         </Card>
+        </>
     );
 };
 
-export default CourseSummary;
+export default CourseDetails;

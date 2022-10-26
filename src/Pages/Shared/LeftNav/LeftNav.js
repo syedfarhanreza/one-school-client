@@ -16,14 +16,16 @@ const LeftNav = () => {
             <h2>Total Courses: {courses.length}</h2>
             <div>
             {
-                    courses.map(course => <Card style={{ width: '18rem' }} className="mb-2" key={course.id}>
+                    courses.map(course => <Link key={course.id} to={`/courses/${course.id}`}>
+                    <Card style={{ width: '18rem' }} className="mb-2" >
                     <Card.Img className='d-none d-lg-block' variant="top" src={course.courseBanner} />
                     <Card.Body>
                       <Card.Title >
-                        <Link className='text-decoration-none'  to={`/course/${course.id}`}>{course.name}</Link>
+                        <h5 className='text-decoration-none'  >{course.name}</h5>
                       </Card.Title>
                     </Card.Body>
-                  </Card>)
+                  </Card>
+                    </Link>)
                 }
             </div>
         </div>
