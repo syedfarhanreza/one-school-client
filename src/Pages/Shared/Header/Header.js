@@ -4,12 +4,14 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import image from '../../../assets/images/Logo.jpg'
+import LeftNav from '../LeftNav/LeftNav';
 
 const Header = () => {
   return (
-    <Navbar collapseOnSelect className='mb-4' expand="lg" bg="dark" variant="dark">
+    <Navbar collapseOnSelect className='mb-4' expand="lg" bg="light" variant="light">
       <Container>
-        <Navbar.Brand className='me-4' href="#home">
+        <Navbar.Brand className='me-4' href="/">
+          <Link className='text-decoration-none' to='/'>
           <img
             alt=""
             src={image}
@@ -18,14 +20,15 @@ const Header = () => {
             className="d-inline-block align-top"
           />{' '}
           OneSchool
+          </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
+        <Navbar.Collapse className='px-5' id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Link className='me-2 text-decoration-none ' to='/'>Home</Link>
-            <Link className='me-2 text-decoration-none ' to='/courses'>Courses</Link>
-            <Link className='me-2 text-decoration-none ' to='faq'>FAQ</Link>
-            <Link className='me-2 text-decoration-none ' to='/blog'>Blog</Link>
+            <Link className='me-4 text-decoration-none ' to='/'>Home</Link>
+            <Link className='me-4 text-decoration-none ' to='/courses'>Courses</Link>
+            <Link className='me-4 text-decoration-none ' to='faq'>FAQ</Link>
+            <Link className='me-4 text-decoration-none ' to='/blog'>Blog</Link>
           </Nav>
           <Nav>
             <Nav.Link href="#deets">More deets</Nav.Link>
@@ -33,6 +36,9 @@ const Header = () => {
               Dank memes
             </Nav.Link>
           </Nav>
+          <div className=' d-lg-none'>
+            <LeftNav></LeftNav>
+          </div>
         </Navbar.Collapse>
       </Container>
     </Navbar>
