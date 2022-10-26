@@ -8,7 +8,7 @@ import { Button } from 'react-bootstrap';
 
 const CourseDetails = () => {
     const courseInfo = useLoaderData();
-    const { name,courseDetails, about, cost, courseBanner, enrolled, instructor } = courseInfo;
+    const {id, name,courseDetails, about, cost, courseBanner, enrolled, instructor } = courseInfo;
     console.log(courseInfo.name);
     return (
         <>
@@ -36,7 +36,7 @@ const CourseDetails = () => {
                 <Card.Text>
                     <h6>About this program:</h6>{about}
                 </Card.Text>
-                <Link to=''><Button variant='primary'>Enroll</Button></Link>
+                <Link to={`/courses/${id}/enroll`}><Button variant='primary'>Enroll</Button></Link>
             </Card.Body>
             <Card.Footer className="text-muted d-flex justify-content-between align-items-center">
                 <div>

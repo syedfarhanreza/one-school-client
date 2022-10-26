@@ -10,7 +10,7 @@ const Home = () => {
 
         </Col>
         <Col lg="4">
-            <RightNav></RightNav>
+           
         </Col>
       </Row>
       </Container>

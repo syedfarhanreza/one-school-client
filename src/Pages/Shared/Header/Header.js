@@ -57,7 +57,7 @@ const Header = () => {
                 roundedCircle 
                 src={user?.photoURL}></Image>
                 :
-                <FaUser></FaUser>
+                <FaUser className='me-4'></FaUser>
               }
               <Button onClick={handleLogOut} variant='danger'>Log Out</Button>
                </>
@@ -65,7 +65,7 @@ const Header = () => {
                 <>
                 
                   <Link className='me-2' to='/login'><Button>Login</Button></Link>
-                  <Link to='/signup'><Button>Sign In</Button></Link>
+                  <Link to='/signup'><Button>Sign Up</Button></Link>
                 </>
               }
               
