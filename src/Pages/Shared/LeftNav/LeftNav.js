@@ -21,7 +21,7 @@ const LeftNav = () => {
                     <Card.Img className='d-none d-lg-block' variant="top" src={course.courseBanner} />
                     <Card.Body>
                       <Card.Title >
-                        <h5 className='text-decoration-none'  >{course.name}</h5>
+                        <p className='text-decoration-none'  >{course.name}</p>
                       </Card.Title>
                     </Card.Body>
                   </Card>

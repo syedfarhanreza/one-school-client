@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useContext } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
@@ -8,7 +8,7 @@ import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import RightNav from '../../Shared/RightNav/RightNav';
 
 const SignUp = () => {
-
+    const [error, setError] =useState('');
     const { createUser } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -26,9 +26,12 @@ const SignUp = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
+                setError('');
                 navigate('/');
             })
-            .catch(error => console.error(error));
+            .catch(error =>{ console.error(error)
+                setError(error.message);
+            });
     }
     return (
         <Container>
@@ -53,7 +56,7 @@ const SignUp = () => {
                             <Form.Control name="password" type="password" placeholder="Password" required />
                         </Form.Group>
                         <Form.Text className="text-danger">
-                            We'll never share your email with anyone else.
+                            {error}
                         </Form.Text> <br />
                         <Button variant="primary" type="submit">
                             Sign Up
