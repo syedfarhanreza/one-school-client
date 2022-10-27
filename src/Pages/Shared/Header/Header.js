@@ -1,17 +1,21 @@
 import React from 'react';
+import './Header.css'
 import { useContext } from 'react';
 import userPic from '../../../assets/images/user.png'
 import { Button, Image } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
+import {  Link } from 'react-router-dom';
 import image from '../../../assets/images/Logo.jpg'
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import LeftNav from '../LeftNav/LeftNav';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import { createContext, useState } from "react";
+import ReactSwitch from "react-switch";
 
+export const ThemeContext = createContext(null);
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -31,9 +35,17 @@ const Header = () => {
       {user?.displayName}
     </Tooltip>
   );
+  const [theme, setTheme] = useState("dark");
+
+  const toggleTheme = () => {
+    setTheme((curr) => (curr === "light" ? "dark" : "light"));
+  };
 
   return (
-    <Navbar collapseOnSelect className='mb-4' expand="lg" bg="light" variant="light">
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <div id={theme}>
+      <div>
+      <Navbar collapseOnSelect className='mb-4' expand="lg" bg="light" variant="light" >
       <Container>
         <Navbar.Brand className='me-4' href="/">
           <Link className='text-decoration-none' to='/'>
@@ -54,6 +66,12 @@ const Header = () => {
             <Link className='me-4 text-decoration-none ' to='/courses'>Courses</Link>
             <Link className='me-4 text-decoration-none ' to='faq'>FAQ</Link>
             <Link className='me-4 text-decoration-none ' to='/blog'>Blog</Link>
+            
+              
+                <div>
+                  <label> {theme === "light" ? "Light Mode" : "Dark Mode"}</label>
+                  <ReactSwitch onChange={toggleTheme} checked={theme === "dark"} />
+                </div>
           </Nav>
           <Nav>
             <Nav.Link>
@@ -110,6 +128,9 @@ const Header = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+      </div>
+    </div>
+    </ThemeContext.Provider>
   );
 };
 
