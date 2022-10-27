@@ -17,7 +17,7 @@ const LeftNav = () => {
             <div>
             {
                     courses.map(course => <Link key={course.id} to={`/courses/${course.id}`}>
-                    <Card style={{ width: '18rem' }} className="mb-2" >
+                    <Card style={{ width: '14rem' }} className="mb-2" >
                     <Card.Img className='d-none d-lg-block' variant="top" src={course.courseBanner} />
                     <Card.Body>
                       <Card.Title >

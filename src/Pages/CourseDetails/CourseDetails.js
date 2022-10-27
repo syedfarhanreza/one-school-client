@@ -48,11 +48,11 @@ const CourseDetails = () => {
                 <Button onClick={generatePDF} variant='danger'>Download PDF</Button>
             </div>
             <Row>
-                <Col lg="4">
+                <Col lg="4" className='d-none d-lg-block'>
                     <LeftNav></LeftNav>
                 </Col>
                 <Col lg="8">
-                    <Card className='mb-5 m-auto' id='pdfContainer' style={{ width: '900px' }}>
+                    <Card className='mb-5 m-auto' id='pdfContainer' >
                         <Card.Header>
                             <div className='d-flex align-items-center'>
                                 <Image
@@ -75,7 +75,9 @@ const CourseDetails = () => {
                             <>
                                 <h6>About this program:</h6>{about}
                             </>
+                            <div>
                             <Link to={`/courses/${id}/enroll`}><Button variant='primary'>Get Premium Access</Button></Link>
+                            </div>
                         </Card.Body>
                         <Card.Footer className="text-muted d-flex justify-content-between align-items-center">
                             <div>
