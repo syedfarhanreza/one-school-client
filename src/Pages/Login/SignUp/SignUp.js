@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import RightNav from '../../Shared/RightNav/RightNav';
 
@@ -61,7 +61,9 @@ const SignUp = () => {
                         <Button variant="primary" type="submit">
                             Sign Up
                         </Button>
-
+                        <div>
+                            <p>Have an account? <Link to='/login'><span>Log In</span></Link></p>
+                        </div>
                     </Form>
                 </Col>
                 <Col lg="4">

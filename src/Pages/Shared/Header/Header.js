@@ -44,7 +44,7 @@ const Header = () => {
             <Link className='me-4 text-decoration-none ' to='/blog'>Blog</Link>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets">
+            <Nav.Link>
               {
                 user?.uid ?
                <>

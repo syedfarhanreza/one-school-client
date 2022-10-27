@@ -1,4 +1,6 @@
 import React from 'react';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 import Card from 'react-bootstrap/Card';
 import { Link, useLoaderData } from 'react-router-dom';
 import { BsPeople } from 'react-icons/bs';
@@ -11,17 +13,46 @@ const CourseDetails = () => {
     const courseInfo = useLoaderData();
     const { id, name, courseDetails, about, cost, courseBanner, enrolled, instructor } = courseInfo;
     console.log(courseInfo.name);
+    const generatePDF = () => {
+
+        const input = document.getElementById('pdfContainer');
+
+        html2canvas(input)
+            .then((canvas) => {
+                const imgData = canvas.toDataURL('image/png');
+                const bleedWidth = 100;
+
+                const width = parseInt(canvas.style.width) + bleedWidth * 2;
+                const height = parseInt(canvas.style.height) + bleedWidth;
+
+                const pdf = new jsPDF({
+                    orientation: 'landscape',
+                    unit: 'px',
+                    format: [width, height]
+                });
+
+                const pageSize = pdf.internal.pageSize;
+                const pageWidth = pageSize.width ? pageSize.width : pageSize.getWidth();
+
+                const imgProps = pdf.getImageProperties(imgData);
+
+                const pdfWidth = pageWidth - bleedWidth * 2;
+                const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+                pdf.addImage(imgData, "PNG", bleedWidth, 50, pdfWidth, pdfHeight);
+                pdf.save("download.pdf");
+            });
+    };
     return (
         <Container>
             <div>
-                <Button variant='danger'>Download PDF</Button>
+                <Button onClick={generatePDF} variant='danger'>Download PDF</Button>
             </div>
             <Row>
                 <Col lg="4">
                     <LeftNav></LeftNav>
                 </Col>
                 <Col lg="8">
-                    <Card className='mb-5 m-auto' style={{ width: '900px' }}>
+                    <Card className='mb-5 m-auto' id='pdfContainer' style={{ width: '900px' }}>
                         <Card.Header>
                             <div className='d-flex align-items-center'>
                                 <Image
@@ -44,7 +75,7 @@ const CourseDetails = () => {
                             <Card.Text>
                                 <h6>About this program:</h6>{about}
                             </Card.Text>
-                            <Link to={`/courses/${id}/enroll`}><Button variant='primary'>Enroll</Button></Link>
+                            <Link to={`/courses/${id}/enroll`}><Button variant='primary'>Get Premium Access</Button></Link>
                         </Card.Body>
                         <Card.Footer className="text-muted d-flex justify-content-between align-items-center">
                             <div>
