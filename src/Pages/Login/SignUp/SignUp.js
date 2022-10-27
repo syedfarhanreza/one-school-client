@@ -8,8 +8,8 @@ import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import RightNav from '../../Shared/RightNav/RightNav';
 
 const SignUp = () => {
-    const [error, setError] =useState('');
-    const { createUser } = useContext(AuthContext);
+    const [error, setError] = useState('');
+    const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleSubmit = event => {
@@ -28,10 +28,21 @@ const SignUp = () => {
                 form.reset();
                 setError('');
                 navigate('/');
+                handleUpdateUserProfile(name, photoURL);
             })
-            .catch(error =>{ console.error(error)
+            .catch(error => {
+                console.error(error)
                 setError(error.message);
-            });
+            }); 
+    }
+    const handleUpdateUserProfile = (name, photoURL) => {
+        const profile = {
+            displayName: name,
+            photoURL: photoURL
+        }
+        updateUserProfile(profile)
+            .then(() => { })
+            .catch(error => console.error(error));
     }
     return (
         <Container>
@@ -39,8 +50,8 @@ const SignUp = () => {
                 <Col lg="8">
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3" controlId="formBasicName">
-                            <Form.Label>Your Name</Form.Label>
-                            <Form.Control name="name" type="text" placeholder="Your Name" />
+                            <Form.Label>Your Full Name</Form.Label>
+                            <Form.Control name="name" type="text" placeholder="Your Full Name" />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicPhotoURL">
                             <Form.Label>Photo URL</Form.Label>

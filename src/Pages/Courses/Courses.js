@@ -9,7 +9,7 @@ const Courses = () => {
     return (
         <div>
             <Row>
-            <Col xs={6} md={4}>
+            <Col xs={6} md={4} className='d-none d-lg-block'>
                 <div>
                     <LeftNav></LeftNav>
                 </div>

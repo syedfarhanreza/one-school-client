@@ -69,12 +69,12 @@ const CourseDetails = () => {
                         <Card.Body>
                             <h2 className='text-primary'>{name}</h2>
                             <Card.Img variant="top" className='mb-5' style={{ height: '400px' }} src={courseBanner} />
-                            <Card.Text>
+                            <>
                                 <h6>Course Details:</h6>{courseDetails}
-                            </Card.Text>
-                            <Card.Text>
+                            </>
+                            <>
                                 <h6>About this program:</h6>{about}
-                            </Card.Text>
+                            </>
                             <Link to={`/courses/${id}/enroll`}><Button variant='primary'>Get Premium Access</Button></Link>
                         </Card.Body>
                         <Card.Footer className="text-muted d-flex justify-content-between align-items-center">
