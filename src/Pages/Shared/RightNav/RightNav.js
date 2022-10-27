@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { FcGoogle } from "react-icons/fc"
-import { FaGithub} from "react-icons/fa"
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
 
@@ -24,7 +23,6 @@ const RightNav = () => {
         <div>
             <ButtonGroup vertical>
                 <Button onClick={handleGoogleSignIn} className='mb-2' variant="outline-primary"><FcGoogle></FcGoogle> Login with Google</Button>
-                <Button variant="outline-dark"><FaGithub></FaGithub> Login with Github</Button>
             </ButtonGroup>
             <div className='mt-4'>
                 
